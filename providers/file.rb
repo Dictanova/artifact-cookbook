@@ -34,6 +34,7 @@ def load_current_resource
     chef_gem "nexus_cli" do
       version "4.1.1"
       action :upgrade
+      compile_time true
     end
 
     @nexus_configuration = new_resource.nexus_configuration
@@ -41,6 +42,7 @@ def load_current_resource
   elsif Chef::Artifact.from_s3?(@new_resource.location)
     chef_gem "aws-sdk" do
       version "1.29.0"
+      compile_time true
     end
   end
   @file_location = new_resource.location

@@ -28,6 +28,7 @@ def load_current_resource
     chef_gem "nexus_cli" do
       version "4.1.1"
       action :upgrade
+      compile_time true
     end
     require 'nexus_cli'
     artifact = NexusCli::Artifact.new(new_resource.location)

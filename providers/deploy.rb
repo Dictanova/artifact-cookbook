@@ -52,6 +52,7 @@ def load_current_resource
     chef_gem "nexus_cli" do
       version "4.1.1"
       action :upgrade
+      compile_time true
     end
 
     @nexus_configuration_object = new_resource.nexus_configuration
@@ -84,6 +85,7 @@ def load_current_resource
 
     chef_gem "aws-sdk" do
       version "1.29.0"
+      compile_time true
     end
 
     @artifact_version = @new_resource.version
