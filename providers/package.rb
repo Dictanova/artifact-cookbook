@@ -23,13 +23,11 @@ attr_reader :nexus_configuration_object
 attr_reader :extension
 attr_reader :file_name
 
+include Chef::Artifact::Helpers
+
 def load_current_resource
   if Chef::Artifact.from_nexus?(new_resource.location)
-    chef_gem "nexus_cli" do
-      version "4.1.1"
-      action :upgrade
-      compile_time true
-    end
+    install_nexus_cli_gem()
     require 'nexus_cli'
     artifact = NexusCli::Artifact.new(new_resource.location)
     @nexus_configuration_object = new_resource.nexus_configuration

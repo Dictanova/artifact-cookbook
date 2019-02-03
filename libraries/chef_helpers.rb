@@ -21,6 +21,18 @@ class Chef
           Chef::Log.debug "#{from}[run_proc::#{proc_name}] Skipping execution of #{proc_name} proc because it was not defined."
         end
       end
+
+      def install_nexus_cli_gem()
+        gem_version = "4.1.2.pre.dictanova0"
+        gem_source = "#{Chef::Config[:file_cache_path]}/cookbooks/artifact/files/nexus_cli-#{gem_version}.gem"
+        chef_gem "nexus_cli" do
+          version gem_version
+          action :upgrade
+          compile_time true
+          clear_sources true
+          source gem_source
+        end
+      end
     end
   end
 end

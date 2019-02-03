@@ -49,11 +49,7 @@ def load_current_resource
   end
 
   if Chef::Artifact.from_nexus?(@new_resource.artifact_location)
-    chef_gem "nexus_cli" do
-      version "4.1.1"
-      action :upgrade
-      compile_time true
-    end
+    install_nexus_cli_gem()
 
     @nexus_configuration_object = new_resource.nexus_configuration
     @nexus_connection = Chef::Artifact::Nexus.new(node, nexus_configuration_object)
